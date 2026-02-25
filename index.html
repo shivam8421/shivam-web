@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FYBScIT | Personal Portfolio</title>
+    <style>
+        :root {
+            --primary: #6366f1;
+            --accent: #10b981;
+            --bg: #0f172a;
+            --card-bg: rgba(30, 41, 59, 0.7);
+            --text-main: #f8fafc;
+            --nav-bg: rgba(15, 23, 42, 0.8);
+        }
+
+        * { box-sizing: border-box; scroll-behavior: smooth; }
+
+        body {
+            background-color: var(--bg);
+            background-image: linear-gradient(rgba(15, 23, 42, 0.9), rgba(15, 23, 42, 0.9)),
+                url('https://images.unsplash.com/photo-1517694712202-14dd9538aa97?q=80&w=2070'); 
+            background-attachment: fixed;
+            background-size: cover;
+            color: var(--text-main);
+            font-family: 'Inter', sans-serif;
+            margin: 0;
+            padding-top: 80px; /* Space for fixed navbar */
+        }
+
+        /* --- NAVBAR --- */
+        .navbar {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            z-index: 1000;
+            background: var(--nav-bg);
+            backdrop-filter: blur(15px);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+            padding: 15px 0;
+        }
+
+        .nav-container {
+            max-width: 1000px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0 20px;
+        }
+
+        .logo {
+            font-weight: 800;
+            font-size: 1.2rem;
+            color: var(--primary);
+            text-decoration: none;
+            letter-spacing: 1px;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 25px;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: var(--text-main);
+            font-size: 0.9rem;
+            font-weight: 500;
+            transition: 0.3s;
+        }
+
+        .nav-links a:hover { color: var(--primary); }
+
+        /* --- PROFILE SECTION --- */
+        .profile-header {
+            max-width: 800px;
+            margin: 20px auto 40px;
+            text-align: center;
+            padding: 50px 20px;
+            background: rgba(30, 41, 59, 0.5);
+            backdrop-filter: blur(15px);
+            border-radius: 30px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .image-container {
+            position: relative;
+            width: 140px;
+            height: 140px;
+            margin: 0 auto 20px;
+        }
+
+        .my-photo {
+            width: 100%;
+            height: 100%;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 3px solid var(--primary);
+        }
+
+        /* --- TIMELINE --- */
+        .timeline { position: relative; max-width: 800px; margin: 60px auto; padding-bottom: 40px; }
+        .timeline::after {
+            content: ''; position: absolute; width: 2px;
+            background: linear-gradient(to bottom, var(--primary), var(--accent), transparent);
+            top: 0; bottom: 0; left: 50%;
+        }
+
+        .container { padding: 10px 40px; position: relative; width: 50%; box-sizing: border-box; opacity: 0; transition: 0.8s all ease; }
+        .container.left { left: 0; transform: translateX(-40px); }
+        .container.right { left: 50%; transform: translateX(40px); }
+        .container.reveal { opacity: 1; transform: translateX(0); }
+
+        .content { padding: 20px; background: var(--card-bg); backdrop-filter: blur(10px); border-radius: 15px; border: 1px solid rgba(255,255,255,0.05); }
+
+        /* --- CONTACT --- */
+        .contact-card { 
+            max-width: 600px; 
+            margin: 60px auto 100px; 
+            padding: 40px; 
+            background: rgba(30, 41, 59, 0.8); 
+            border-radius: 20px; 
+            border: 1px solid var(--primary); 
+            text-align: center; 
+        }
+
+        @media screen and (max-width: 600px) {
+            .nav-links { display: none; } /* Simplified for mobile */
+            .timeline::after { left: 31px; }
+            .container { width: 100%; padding-left: 70px; transform: translateX(20px) !important; }
+            .right { left: 0; }
+        }
+    </style>
+</head>
+<body>
+
+    <nav class="navbar">
+        <div class="nav-container">
+            <a href="#" class="logo">FYIT.DEV</a>
+            <div class="nav-links">
+                <a href="#about">About</a>
+                <a href="#timeline">Timeline</a>
+                <a href="#contact">Contact</a>
+            </div>
+        </div>
+    </nav>
+
+    <section id="about" class="profile-header">
+        <div class="image-container">
+            <img src="F:\shivam web\WhatsApp Image 2026-02-25 at 1.54.26 PM.jpeg" alt="Profile" class="my-photo" onerror="this.src='https://api.dicebear.com/7.x/bottts/svg?seed=FYIT'">
+        </div>
+        <h1>Shivam Rajbhar</h1>
+        <p>FYBScIT Student | Tech Enthusiast</p>
+    </section>
+
+    <div id="timeline" class="timeline"></div>
+
+    <section id="contact" class="contact-card">
+        <h2>Get In Touch</h2>
+        <p>Currently looking for internship opportunities.</p>
+        <a href="mailto:you@example.com" style="display:inline-block; background: var(--primary); color: white; text-decoration: none; padding: 12px 25px; border-radius: 8px; font-weight: bold; margin-top: 15px;">Send Email</a>
+    </section>
+
+    <script>
+        const portfolioData = {
+            "events": [
+                { "date": "SEP 2025", "title": "University Admission", "description": "Joined the BScIT program to pursue my passion for technology.", "category": "Academic" },
+                { "date": "OCT 2025", "title": "C Programming Milestone", "description": "Successfully built a project using conditional logic and arrays.", "category": "Coding" },
+                { "date": "JAN 2026", "title": "Portfolio Development", "description": "Designed this event-based portfolio using CSS Flexbox and JS.", "category": "Web" }
+            ]
+        };
+
+        const renderTimeline = () => {
+            const root = document.getElementById('timeline-root') || document.getElementById('timeline');
+            portfolioData.events.forEach((event, index) => {
+                const container = document.createElement('div');
+                container.className = `container ${index % 2 === 0 ? 'left' : 'right'}`;
+                container.innerHTML = `<div class="content"><span style="color:var(--accent); font-size:0.8rem; font-weight:bold">${event.date}</span><h3>${event.title}</h3><p style="color:#94a3b8">${event.description}</p></div>`;
+                root.appendChild(container);
+            });
+            
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => { if (entry.isIntersecting) entry.target.classList.add('reveal'); });
+            }, { threshold: 0.1 });
+            document.querySelectorAll('.container').forEach(el => observer.observe(el));
+        };
+
+        document.addEventListener('DOMContentLoaded', renderTimeline);
+    </script>
+</body>
+</html>
